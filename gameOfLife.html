@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/gameOfLife.css">
+    <title>Rx Game Of Life</title>
+</head>
+<body>
+    <div>
+      <h1>RxJS Game Of Life</h1>
+    </div>
+    <div id="output"></div>
+    
+    <script src="lib/rx/rx.all.js"></script>
+    <script src="src/gameOfLife.js"></script>
+    <script src="src/gameOfLifePatterns.js"></script>
+    <script>
+    function wrapDiv(cell) {
+      var cellStyle = (cell == 0) ? "dead" : "live";
+      return "<div class='cell cell-" + cellStyle + "'>&nbsp;</div>";
+    }
+    
+    function render(world)  {
+      var string = world.map(r => r.map(wrapDiv))
+                    .join("<br>")
+                    .replace(/,/g, "");
+      document.getElementById("output").innerHTML = string;
+    }
+    
+    var seedWorld = spaceshipGlider();
+    Rx.Observable.generateWithRelativeTime(seedWorld,
+      w => true,
+      newWorld,
+      w => w,
+      () => 1000
+    )
+    .take(30)
+    .subscribe(
+      render,
+      e  => console.info(e.message),
+      () => console.info("*** Complete ***")
+    );
+    </script>
+</body>
+</html>
