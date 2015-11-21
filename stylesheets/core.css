@@ -1,3 +1,9 @@
 @import url("screen.css");
 @import url("non-screen.css") handheld;
 @import url("non-screen.css") only screen and (max-device-width:640px);
+
+iframe {
+  background-image: url("https://assets-cdn.github.com/images/spinners/octocat-spinner-32-EAF2F5.gif");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
