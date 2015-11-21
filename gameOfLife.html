@@ -12,13 +12,13 @@
     <script src="src/gameOfLife.js"></script>
     <script src="src/gameOfLifePatterns.js"></script>
     <script>
-    function wrapDiv(cell) {
+    function toDiv(cell) {
       var cellStyle = (cell == 0) ? "dead" : "live";
       return "<div class='cell cell-" + cellStyle + "'>&nbsp;</div>";
     }
     
     function render(world)  {
-      var string = world.map(r => r.map(wrapDiv))
+      var string = world.map(r => r.map(toDiv))
                     .join("<br>")
                     .replace(/,/g, "");
       document.getElementById("output").innerHTML = string;
