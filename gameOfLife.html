@@ -24,7 +24,7 @@
       document.getElementById("output").innerHTML = string;
     }
     
-    var seedWorld = oscillatorPulsar();
+    var seedWorld = oscillatingPulsar();
     Rx.Observable.generateWithRelativeTime(seedWorld,
       w => true,
       newWorld,

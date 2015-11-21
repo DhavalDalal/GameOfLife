@@ -25,7 +25,7 @@ var gliderGun = () => [
   [1, 0, 1, 0, 1]
 ];
 
-var oscillatorPulsar = () => [
+var oscillatingPulsar = () => [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -43,6 +43,12 @@ var oscillatorPulsar = () => [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 ];
 
+var oscillatingToad = () => [
+  [0, 0, 0, 0],
+  [0, 1, 1, 1],
+  [1, 1, 1, 0],
+  [0, 0, 0, 0]
+];
 //Puffer, moves itself across leaving debris behind.
 var puffer = () => [
 ];
