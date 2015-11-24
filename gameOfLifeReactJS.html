@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/gameOfLife.css">
+    <title>Rx Game Of Life Using ReactJS</title>
+</head>
+<body>
+    <div id="output"></div>
+    <script src="lib/rx/rx.all.js"></script>
+    <script src="lib/reactjs/JSXTransformer.js"></script>
+    <script src="lib/reactjs/react.js"></script>
+    <script src="src/gameOfLife.js"></script>
+    <script src="src/gameOfLifePatterns.js"></script>
+    <script type="text/jsx">
+    function toDiv(cell, rid, cid) {
+      var cellStyle = (cell == 0) ? "dead" : "live";
+      return (<div key={rid + "" + cid} className={`cell cell-${cellStyle}`}>&nbsp;</div>);
+    }
+    
+    function render(world)  {
+      var grid = world.map((r, rid) => { 
+        return (<div key={rid}>
+                  {r.map((cell, cid) => 
+                     toDiv(cell, rid, cid)
+                  )}
+               </div>);
+      });
+      React.render(<div>{grid}</div>, 
+                      document.getElementById("output"));
+    }
+ 
+    var seedWorld = oscillatingPulsar();
+    Rx.Observable.generateWithRelativeTime(seedWorld,
+      w => true,
+      newWorld,
+      w => w,
+      () => 1000
+    )
+    .take(30)
+    .subscribe(
+      render,
+      e  => console.info(e.message),
+      () => console.info("*** Complete ***")
+    );
+    </script>
+</body>
+</html>
