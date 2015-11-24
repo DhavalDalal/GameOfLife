@@ -19,7 +19,7 @@
     
     function render(world)  {
       var string = world.map(r => r.map(toDiv))
-                    .join("<br>")
+                    .join("<br />")
                     .replace(/,/g, "");
       document.getElementById("output").innerHTML = string;
     }
